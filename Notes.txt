@@ -1,0 +1,61 @@
+== Overview ==
+This was programmed for a fortune 100 enterprise environment as a proof of
+concept to patch thousands of servers simultaneously. Thus, logging and
+lots of audit feedback was required to allow engineering teams to respond to
+patch issues immediately.
+Some intergration with other systems, such as RPA and monitoring was begun, but
+the project was cancelled before completion. Thus, I'm putting the pieces out
+there for others to build on.
+
+=== Requirements ===
+* 1000 CIs patched concurrently
+* near realtime monitoring of the process
+* a killswitch
+
+== Methodology ==
+The PS1 scripts contained here will already be deployed on the controllers
+before patch time. Start.ps1 is called on each controller with a subset of the
+full CI list.
+
+start.ps1 calls and imports all the other libraries. This can be of course cat'd
+down to one script file if necessary. Start loads all objects, and sets up a
+runspace for threading. It recieves a list of CIs from controller where it's
+launched. These are queued and threaded automatically by the runspace
+configuration. Status is kept through a thread-safe sync'd object, and
+regularly written to disk.
+
+A monitor state runs on the automata, and regularly checks in with all
+controllers, collecting their status info and reporting it. It can also restart
+the scripts if required.
+
+
+=== Start.PS1 ===
+Primary Job: Running and maintaining CIHandlers across controllers. Collate any
+state data returned by a CIHandler. 
+
+=== CIHandler ===
+Primary job: Handling connection to CIs, patch process logic. Communicate state
+to master.
+
+== Known issues ==
+0. Downtime with SCOM...?
+1. Add logic for Clusters:
+    9A. Hyper-V
+    9B. SQL
+
+2. Needs to report list of CIs in failed state as a ticket
+    4A. No blocker, just needs implementation
+    4B. Governance reporting - Provide stats for audit
+5. Fix progress percentage on reboot/ with patches remaining
+6. Fail conditions
+    B. drain fail - stop patch & escalate, other nodes will not patch
+    C. patch fail - (all or some), stop patch & escalate, other nodes will not patch
+
+* Ensure Accuracy of Error Reporting
+* Accurate Start/End times of patches per CI
+* Reporting Error conditions into tables, and CSV
+* Kill script threads if they're locked.
+
+
+=== References ===
+* Threading: http://www.get-blog.com/?p=189

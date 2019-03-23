@@ -1,0 +1,16 @@
+﻿{
+    "api_username": "",
+    "api_password": "",
+    "api_url": "",
+    "ScriptSourceDir":  "C:\\Users\\DMacDonald\\sync\\projects\\powershell\\winpatching",
+    "testController":  "4",
+    "disableLogging" : "false",
+    "vmController": "17",
+    "controllerScriptPath": "C:\\Data\\Patching",
+    "controllerCIPath": "C:\\Data\\CIs",
+    "controllerSharing": "",
+    "remoteTempDir": "temp\\patching\\",
+    "CIList":  [
+        "example.com"
+    ]
+}

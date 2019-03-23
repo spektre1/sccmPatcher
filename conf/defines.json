@@ -1,0 +1,28 @@
+{
+    "patchStateDef":  {
+        "0":  "None",
+        "1":  "Available",
+        "2":  "Submitted",
+        "3":  "Detecting",
+        "4":  "PreDownload",
+        "5":  "Downloading",
+        "6":  "Wait-Install",
+        "7":  "Installing",
+        "8":  "Pending-Soft-Reboot",
+        "9":  "Pending-Hard-Reboot",
+        "10":  "Wait-Reboot",
+        "11":  "Verifying",
+        "12":  "Install-Complete",
+        "13":  "Error",
+        "14":  "Wait-Service-Window",
+        "15":  "Wait-User-Logon",
+        "16":  "Wait-User-Logoff",
+        "17":  "Wait-Job-User-Logon",
+        "18":  "Wait-User-Reconnect",
+        "19":  "Pending-User-Logoff",
+        "20":  "Pending-Update",
+        "21":  "Waiting-Retry",
+        "22":  "Wait-Pres-ModeOff",
+        "23":  "Wait-For-Orchestration"
+    }
+}
